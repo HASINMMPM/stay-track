@@ -14,6 +14,38 @@ export class validationSchemas{
         email: Joi.string().email().required(),
         password: Joi.string().required(),
     })
+    
+    createBuildingSchema = Joi.object({
+        ownerId: Joi.string().required(),
+        name: Joi.string().required(),
+        local: Joi.string().required(),
+        city: Joi.string().required(),
+        thaluk: Joi.string().required(),
+        district: Joi.string().required(),
+        state: Joi.string().required(),
+        lat: Joi.string().required(),
+        long: Joi.string().required()
+    })
+    updateBuildingSchema = Joi.object({
+        buildingId: Joi.string().min(4).required(),
+        name: Joi.string().min(3),
+        local: Joi.string().min(4),
+        city: Joi.string().min(4),
+        thaluk: Joi.string().min(4),
+        district: Joi.string().min(4),
+        state: Joi.string().min(4),
+    });
+
+    idSchema = Joi.object({
+        id: Joi.string().required(),
+    });
+
+    getAllBuildingsSchema = Joi.object({
+        pageNo: Joi.number().required(),
+        limit: Joi.number().required(),
+        sort: Joi.string(),
+        filter: Joi.object(),
+    });
 }
 
 

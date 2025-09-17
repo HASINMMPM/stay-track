@@ -2,7 +2,7 @@ import express from "express";
 import cors from "cors";
 import helmet from "helmet";
 import morgan from "morgan";
-import apiRoutes from "./routes";
+import apiRoutes from "./routes/apiRoutes";
 import DbConnection from "./config/database";
 import { errorHandler, notFoundHandler } from "./middleware/errorHandler";
 

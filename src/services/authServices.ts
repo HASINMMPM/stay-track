@@ -36,4 +36,14 @@ export class AuthServices {
     }
     return user;
   }
+  async isNotaUser(id: string) {
+    const user = await UserModel.findById(id);
+    if (!user) {
+      throw new Error("User not found");
+    }
+    if (user.role != "owner") {
+      return false;
+    }
+    return true;
+  }
 }
