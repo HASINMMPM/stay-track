@@ -11,10 +11,19 @@ export const errorHandler = (
   res: Response,
   next: NextFunction
 ): void => {
-  const statusCode = err.statusCode || 500;
-  const message = err.message || 'Internal Server Error';
+  let statusCode = err.statusCode || 500;
+  let message = err.message || 'Internal Server Error';
 
-  console.error(`Error ${statusCode}: ${message}`);
+  // Handle specific error types
+  if (err.message === "User already exists with this email or mobile number") {
+    statusCode = 409; // Conflict
+  } else if (err.message === "User not found") {
+    statusCode = 404; // Not Found
+  } else if (err.message === "Invalid password") {
+    statusCode = 401; // Unauthorized
+  }
+
+  console.error(`[ERROR] ${new Date().toLocaleTimeString()} Error: ${message}`);
   console.error(err.stack);
 
   res.status(statusCode).json({

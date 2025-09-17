@@ -1,17 +1,8 @@
 import { Router } from 'express';
+import authRoutes from './authRoutes';
 
-const router = Router();
+const apiRoutes = Router();
 
-// API routes will be defined here
-router.get('/', (req, res) => {
-  res.json({
-    message: 'StayTrack API Routes',
-    version: '1.0.0',
-    endpoints: {
-      health: '/health',
-      api: '/api'
-    }
-  });
-});
+apiRoutes.use('/auth', authRoutes);
 
-export default router;
+export default apiRoutes;

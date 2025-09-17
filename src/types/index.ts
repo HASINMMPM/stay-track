@@ -1,5 +1,3 @@
-// Global type definitions for the StayTrack API
-
 export interface ApiResponse<T = any> {
   success: boolean;
   data?: T;
@@ -14,30 +12,21 @@ export interface HealthCheck {
   version: string;
 }
 
-export interface User {
-  id: string;
-  email: string;
-  name: string;
-  createdAt: Date;
-  updatedAt: Date;
-}
-
 export interface Stay {
   id: string;
   userId: string;
   location: string;
   checkIn: Date;
   checkOut?: Date;
-  duration?: number; // in hours
+  duration?: number;
   createdAt: Date;
   updatedAt: Date;
 }
 
-// Request/Response types
 export interface CreateStayRequest {
   location: string;
-  checkIn: string; // ISO date string
-  checkOut?: string; // ISO date string
+  checkIn: string;
+  checkOut?: string;
 }
 
 export interface UpdateStayRequest {
