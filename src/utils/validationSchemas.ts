@@ -46,6 +46,21 @@ export class validationSchemas{
         sort: Joi.string(),
         filter: Joi.object(),
     });
+    createLeaseSchema = Joi.object({
+        buildingId: Joi.string().required(),
+        tenantId: Joi.string().required(),
+        moveIn: Joi.date().required(),
+        moveOut: Joi.date(),
+    });
+    getLeaseByIdSchema = Joi.object({
+        id: Joi.string().required(),
+    });
+    getAllLeasesSchema = Joi.object({
+        pageNo: Joi.number().required(),
+        limit: Joi.number().required(),
+        sort: Joi.string(),
+        filter: Joi.object(),
+    });
 }
 
 

@@ -5,10 +5,10 @@ class DbConnection {
     async connectDB() {
         try {
             const res = await mongoose.connect(MONGO_URI);
-            console.log(`💚 DB Connected ${res.connection.name} ${res.connection.port}`);
+            console.log(`\x1b[42m💚 DB Connected ${res.connection.name} ${res.connection.port}\x1b[0m`);
           
         } catch (error) {
-            console.log(`💢Error in connecting db: `, error);
+            console.log(`\x1b[41m💢Error in connecting db: \x1b[0m`, error);
             process.exit(1);
         }
     }
