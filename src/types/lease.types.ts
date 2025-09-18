@@ -17,6 +17,7 @@ export interface createLeaseParams {
     tenantId: string;
     moveIn?: Date;
     moveOut?: Date;
+    ownerId: string;
 }
 
 export interface updateLeaseParams {

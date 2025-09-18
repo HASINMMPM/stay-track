@@ -10,6 +10,7 @@ export class LeaseController {
         buildingId,
         tenantId,
         moveIn,
+        ownerId,
     }: createLeaseParams) {
         const service = new LeaseServices();
         const crrentlyOnLease = false;
@@ -20,6 +21,7 @@ export class LeaseController {
             buildingId,
             tenantId,
             moveIn,
+            ownerId,
         });
         return lease;
     }

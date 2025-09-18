@@ -4,6 +4,7 @@ import {
   LeaseFilterI,
   updateLeaseParams,
 } from "../types/lease.types";
+import { PaymentController } from "../controllers/paymentController";
 
 export class LeaseServices {
   async createLease(params: createLeaseParams) {
@@ -12,7 +13,18 @@ export class LeaseServices {
     if (isCurrentlyOnLease || isCurrentlyOnLease !== null) {
       throw new Error("You are already in a lease please leave from there");
     }
+    const paymentController = new PaymentController();
+    const payment = await paymentController.createPayment(
+      40,
+      params.tenantId,
+      params.ownerId,
+      "lease payment"
+    );
+    if (!payment) {
+      throw new Error("Payment Failed try again later");
+    }
     const lease = await LeaseModel.create(params);
+    console.log("lease created", lease, "payment", payment);
     return lease;
   }
 
@@ -59,7 +71,6 @@ export class LeaseServices {
       .skip(skip)
       .limit(limit);
     const total = await LeaseModel.countDocuments(query);
-
     const totalPages = Math.ceil(total / limit);
     const hasNextPage = pageNo < totalPages ? true : false;
     const hasPrevPage = pageNo > 1 ? true : false;

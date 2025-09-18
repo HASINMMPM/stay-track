@@ -21,7 +21,7 @@ leaseRouter.post(
 
 leaseRouter.get(
   "/get/:id",
-  validate(validationSchemasInstance.getLeaseByIdSchema),
+  // validate(validationSchemasInstance.getLeaseByIdSchema),
   asyncHandler(async (req: Request, res: Response) => {
     const leaseId = req.params.id;
     const controller = new LeaseController();

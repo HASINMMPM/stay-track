@@ -51,6 +51,7 @@ export class validationSchemas{
         tenantId: Joi.string().required(),
         moveIn: Joi.date().required(),
         moveOut: Joi.date(),
+        ownerId: Joi.string().required(),
     });
     getLeaseByIdSchema = Joi.object({
         id: Joi.string().required(),
