@@ -13,7 +13,7 @@ export class BuildingServices {
         if (!isOwner) {
             throw new Error("you are not an owner");
         }
-        const newBuilding = await BuildingModle.create(params);
+        const newBuilding = await BuildingModle.create({ ...params, status: "pending" });
         return newBuilding;
     }
 
@@ -89,6 +89,16 @@ export class BuildingServices {
         if (!building) {
             const error = new Error("Building not found");
             (error as any).code = "bs-gbbi";
+            (error as any).status = 404;
+            throw error;
+        }
+        return building;
+    }
+    async updateBuildingStatus(buildingId: string, status: string) {
+        const building = await BuildingModle.findByIdAndUpdate(buildingId, { status }, { new: true });
+        if (!building) {
+            const error = new Error("Building not found");
+            (error as any).code = "bs-ubs";
             (error as any).status = 404;
             throw error;
         }

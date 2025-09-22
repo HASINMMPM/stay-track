@@ -11,6 +11,7 @@ export interface BuildingDocument extends mongoose.Document {
     state: string;
     lat: string;
     long: string;
+    status: string;
     createdAt: Date;
     updatedAt: Date;
 }
@@ -46,6 +47,7 @@ export interface BuildingFilter {
     thaluk?: string;
     district?: string;
     state?: string;
+    status?: string;
     lat?: string;
     long?: string;
 }

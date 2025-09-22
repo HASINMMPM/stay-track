@@ -3,6 +3,7 @@ import { AuthController } from "../controllers/authController";
 import { validate } from "../middleware/validate";
 import { validationSchemas } from "../utils/validationSchemas";
 import { asyncHandler } from "../middleware/asyncHandler";
+import UserModel from "../models/authModel";
 
 const router = Router();
 
@@ -36,6 +37,12 @@ router.post(
     const user = await authController.login(email, password);
     res.json(user);
   }));
+  router.get(
+    "/get",
+    asyncHandler(async (req: Request, res: Response) => {
+      const user = await UserModel.find();
+      res.json(user);
+    }));
 
 
 export default router;

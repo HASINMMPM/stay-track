@@ -28,6 +28,8 @@ export class validationSchemas {
     password: Joi.string().required(),
   });
 
+
+  // building
   createBuildingSchema = Joi.object({
     ownerId: Joi.string().required(),
     name: Joi.string().required(),
@@ -59,6 +61,11 @@ export class validationSchemas {
     sort: Joi.string(),
     filter: Joi.object(),
   });
+
+  updateBuildingStatusSchema = Joi.object({
+    status: Joi.string().valid("approved", "rejected").required(),
+  });
+
   createLeaseSchema = Joi.object({
     buildingId: Joi.string().required(),
     tenantId: Joi.string().required(),

@@ -40,6 +40,12 @@ const buildingSchema = new mongoose.Schema<BuildingDocument>(
             type: String,
             required: true,
         },
+        status: {
+            type: String,
+            required: true,
+            enum: ["pending", "approved", "rejected"],
+            default: "pending",
+        },
     },
     { timestamps: true }
 );

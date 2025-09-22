@@ -76,4 +76,13 @@ buildingRoutes.get(
   })
 );
 
+buildingRoutes.put(
+  "/update-status/:id",
+  validate(validationSchemasInstance.updateBuildingStatusSchema),
+  asyncHandler(async (req: Request, res: Response) => {
+    const controller = new BuildingController();
+    const building = await controller.updateBuildingStatusController(req.params.id, req.body.status);
+    res.status(200).json(building);
+  })
+);
 export default buildingRoutes;
