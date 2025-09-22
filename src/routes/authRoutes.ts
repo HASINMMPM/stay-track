@@ -10,11 +10,20 @@ const validationSchemasInstance = new validationSchemas();
 const authController = new AuthController();
 router.post(
   "/register",
+  validate(validationSchemasInstance.sendOtpSchema),
+  asyncHandler(async (req: Request, res: Response) => {
+    const { email,mobileNumber } = req.body;
+    const type = "register";
+    const user = await authController.sendOtp(email,type,mobileNumber);
+    res.json(user);
+  }));
+router.post(
+  "/verifyOtp",
   validate(validationSchemasInstance.registrationSchema),
   asyncHandler(async (req: Request, res: Response) => {
     console.log("Registration request received");
-    const { name, email, password, mobileNumber, role } = req.body;
-    const user = await authController.registration(name, email, password, mobileNumber, role);
+    const { name, email, password, mobileNumber, role,otp } = req.body;
+    const user = await authController.registration(name, email, password, mobileNumber, role,otp);
     res.json(user);
   }));
 
@@ -27,5 +36,6 @@ router.post(
     const user = await authController.login(email, password);
     res.json(user);
   }));
+
 
 export default router;
