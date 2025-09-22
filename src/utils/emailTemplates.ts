@@ -176,7 +176,7 @@ StayTrack Team
         </div>
         
         <div class="content">
-            <div class="greeting">Hello ${userName}!</div>
+            <div class="greeting">Hello!</div>
             
             <div class="message">
                 We received a request to ${type.toLowerCase()} your StayTrack account. 
